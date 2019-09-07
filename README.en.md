@@ -8,4 +8,4 @@ Support most metrics (except price)
 
 #### Expand, FORK ME!
 
-[! [star]] (https://gitee.com/pybilly/trainticket/badge/star.svg?theme=dark) (https://gitee.com/pybilly/trainticket/stargazers)
+[![star](https://gitee.com/pybilly/trainticket/badge/star.svg?theme=dark)](https://gitee.com/pybilly/trainticket/stargazers)
