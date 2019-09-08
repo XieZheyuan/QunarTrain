@@ -4,7 +4,7 @@
 
 Use qunwhere API to climb, can climb Chinese train ticket
 
-Support most metrics (except price)
+Support most metrics 
 
 #### Expand, FORK ME!
 
