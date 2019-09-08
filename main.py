@@ -2,9 +2,9 @@
 from requests import get
 from json import loads
 from urllib.parse import quote
-s=input("ÇëÊäÈëÊ¼·¢Õ¾£º")
-e=input("ÇëÊäÈëÖÕµ½Õ¾£º")
-d=input("ÇëÊäÈëÊ±¼ä£¨YYYY-MM-DD£©£º")
+s=input("è¯·è¾“å…¥å§‹å‘ç«™ï¼š")
+e=input("è¯·è¾“å…¥ç»ˆåˆ°ç«™ï¼š")
+d=input("è¯·è¾“å…¥æ—¶é—´ï¼ˆYYYY-MM-DDï¼‰ï¼š")
 s=quote(s)
 e=quote(e)
 d=quote(d)
@@ -14,23 +14,33 @@ url="https://train.qunar.com/dict/open/s2s.do?&dptStation=%s&arrStation=%s&date=
 json=loads(get(url=url).text)
 # print(json)
 if(json["errcode"] != 0 or json["data"]["s2sBeanList"] == []):
-    print("²é²»µ½£¡")
+    print("æŸ¥ä¸åˆ°ï¼")
     __import__("sys").exit(0)
 json=json["data"]["s2sBeanList"]
 for j in json:
     print("-"*100)
     i=j["extraBeanMap"]
-    print("³µ´Î£º%s"%j["trainNo"])
-    print("±¾ÁĞ³µÊ¼·¢Õ¾£º%s"%j["startStationName"])
-    print("±¾ÁĞ³µÖÕµãÕ¾£º%s"%j["endStationName"])
-    print("ÉÏ³µÕ¾Ãû£º%s"%j["dptStationName"])
-    print("ÏÂ³µÕ¾Ãû£º%s" % j["arrStationName"])
-    print("¿ª³µÊ±¼ä£º%s"%j["dptTime"])
-    print("ÏÂ³µÊ±¼ä£º%s" % j["arrTime"])
-    print("¿ªÊÛÊ±¼ä£º%s"%i["startSaleTime"])
-    print("ÁĞ³µÀàĞÍ£º%s"%i["trainType"])
-    print("È«³Ì£º%s"%i["interval"])
-    print("Æ±ÎñĞÅÏ¢£º")
-    # print(i)
+    print("è½¦æ¬¡ï¼š%s"%j["trainNo"])
+    print("æœ¬åˆ—è½¦å§‹å‘ç«™ï¼š%s"%j["startStationName"])
+    print("æœ¬åˆ—è½¦ç»ˆç‚¹ç«™ï¼š%s"%j["endStationName"])
+    print("ä¸Šè½¦ç«™åï¼š%s"%j["dptStationName"])
+    print("ä¸‹è½¦ç«™åï¼š%s" % j["arrStationName"])
+    print("å¼€è½¦æ—¶é—´ï¼š%s"%j["dptTime"])
+    print("ä¸‹è½¦æ—¶é—´ï¼š%s" % j["arrTime"])
+    print("å¼€å”®æ—¶é—´ï¼š%s"%i["startSaleTime"])
+    print("åˆ—è½¦ç±»å‹ï¼š%s"%i["trainType"])
+    print("å…¨ç¨‹ï¼š%s"%i["interval"])
+    print("ç¥¨åŠ¡ä¿¡æ¯ï¼š")
+    seats=j["seats"]
+    def ticket(count):
+        if(count < 0):
+            return "<æŸ¥ä¸åˆ°>"
+        else:
+            return count
+    for k in seats:
+        msg="%sï¼šä»·æ ¼ï¼šï¿¥%sï¼Œç¥¨æ•°ï¼š%så¼ "%(
+            k,seats[k]["price"],ticket(seats[k]["count"])
+        )
+        print(msg)
 
 
